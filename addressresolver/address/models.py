@@ -1,6 +1,6 @@
 from django.db import models
 
-from addressresolver.core.behaviors import Timestampable, Visiable
+from core.behaviors import Timestampable, Visiable
 
 
 class Address(Timestampable, Visiable):
