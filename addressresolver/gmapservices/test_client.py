@@ -35,7 +35,7 @@ class GmapClientTest(TestCase):
         abstract_client.get.return_value = OkResult()
         self.client.client = abstract_client
 
-        result = self.client.get("test")
+        result = self.client.get_geocoding("test")
         self.assertEqual(result, {"something": "ok"})
 
     def test_get_none_when_server_error(self):
@@ -43,7 +43,7 @@ class GmapClientTest(TestCase):
         abstract_client.get.return_value = ErrorResult(500)
         self.client.client = abstract_client
 
-        result = self.client.get("test")
+        result = self.client.get_geocoding("test")
         self.assertEqual(result, None)
 
     def test_get_none_when_client_error(self):
@@ -51,7 +51,7 @@ class GmapClientTest(TestCase):
         abstract_client.get.return_value = ErrorResult(400)
         self.client.client = abstract_client
 
-        result = self.client.get("test")
+        result = self.client.get_geocoding("test")
         self.assertEqual(result, None)
 
     def test_get_none_when_error(self):
@@ -59,5 +59,5 @@ class GmapClientTest(TestCase):
         abstract_client.get.return_value = Mock(side_effect=Exception)
         self.client.client = abstract_client
 
-        result = self.client.get("test")
+        result = self.client.get_geocoding("test")
         self.assertEqual(result, None)
