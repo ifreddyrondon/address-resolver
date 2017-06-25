@@ -21,3 +21,11 @@ class GmapServices(metaclass=Singleton):
 
         location = geocoding[0]["geometry"]["location"]
         return location["lat"], location["lng"]
+
+    def get_elevation_from_lat_and_lng(self, lat, lng):
+        locations = "{},{}".format(lat, lng)
+        elevations = self.client.get_elevation(locations)
+        if not elevations or len(elevations) == 0:
+            return None
+
+        return elevations[0]["elevation"]
