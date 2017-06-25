@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'config',
     'address',
-    'geocoding',
+    'gmapservices',
 ]
 
 MIDDLEWARE = [
