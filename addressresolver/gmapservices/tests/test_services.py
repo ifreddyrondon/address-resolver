@@ -2,7 +2,7 @@ from unittest.mock import MagicMock
 
 from django.test import TestCase
 
-from .services import GmapServices
+from gmapservices.services import GmapServices
 
 
 def get_geocoding_object_with_lat_and_lng(lat, lng):
