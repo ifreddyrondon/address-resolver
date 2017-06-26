@@ -1,5 +1,6 @@
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
+from rest_framework.exceptions import ValidationError
 
 from core.behaviors import Timestampable, UUIdable, Visiable
 
@@ -24,7 +25,7 @@ class Address(Timestampable, UUIdable, Visiable):
             lat, lng = self.geo.get_lat_and_lng_from_address(self.address)
             elevation = self.geo.get_elevation_from_lat_and_lng(lat, lng)
             if not lat or not lng:
-                raise ValueError("Latitude, longitude are required")
+                raise ValidationError("Latitude, longitude are required")
 
             self.location = Point(lat, lng)
             if elevation:
