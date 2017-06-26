@@ -43,7 +43,7 @@ before_script:
 
 test:
   variables:
-    DATABASE_URL: "postgres://postgres:@mdillon__postgis/postgres"
+    DATABASE_URL: "postgis://postgres:@mdillon__postgis/postgres"
   script:
   - python manage.py migrate --settings=config.settings.dev
   - python manage.py test --settings=config.settings.dev
