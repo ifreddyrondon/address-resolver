@@ -9,6 +9,5 @@ ADD ./requirements/ /tmp/requirements/
 # Install dependencies
 RUN pip install -qr /tmp/requirements/production.txt
 
-RUN mkdir /code
-WORKDIR /code
-ADD . /code/
+RUN mkdir /src
+WORKDIR /src
