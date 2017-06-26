@@ -6,8 +6,9 @@ services:
   web:
     build: .
     environment:
-      - DJANGO_SETTINGS_MODULE=config.settings.docker
-    command: ./start.sh
+      - DJANGO_SETTINGS_MODULE=config.settings.dev
+      - DATABASE_URL=postgres://postgres:@db/postgres
+    command: bash -c "cd ./addressresolver && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code
     ports:

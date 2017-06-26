@@ -9,9 +9,6 @@ image: python:3
 services:
   - mdillon/postgis
 
-variables:
-  POSTGRES_DB: ci
-
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
@@ -46,7 +43,7 @@ before_script:
 
 test:
   variables:
-    DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
+    DATABASE_URL: "postgres://postgres:@mdillon__postgis/postgres"
   script:
-  - python manage.py migrate --settings=config.settings.gitlab_ci
-  - python manage.py test --settings=config.settings.gitlab_ci
+  - python manage.py migrate --settings=config.settings.dev
+  - python manage.py test --settings=config.settings.dev
