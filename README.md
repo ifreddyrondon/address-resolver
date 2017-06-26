@@ -48,13 +48,15 @@ All the API docs are available in **http://0.0.0.0:8000/docs/** builded with **D
 
 `cd addressresolver`
 
-`python manage.py migrate`
+`python manage.py migrate --settings=config.settings.dev`
 
 ### Run the server
+Make sure set the env var DATABASE_URL.
+e.g. DATABASE_URL=postgis://postgres:@db/postgres
 
 `python manage.py runserver --settings=config.settings.dev` the application will be running on port 8000 **http://0.0.0.0:8000/**
 
 # Test
 ## Run the test
 
-`python manage.py test`
+`python manage.py test --settings=config.settings.dev`
