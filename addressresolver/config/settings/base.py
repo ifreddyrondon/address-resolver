@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'django.contrib.gis',
     'rest_framework',
+    'rest_framework_swagger',
     'config',
     'address',
     'gmapservices',

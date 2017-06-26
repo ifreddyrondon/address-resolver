@@ -15,11 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from rest_framework_swagger.views import get_swagger_view
 
 from .api import router
+
+swagger_schema_view = get_swagger_view(title='Address resolver')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # api endpoints
     url(r'^api/', include(router.urls, namespace='api')),
+    # docs
+    url(r'^$', swagger_schema_view)
 ]
