@@ -22,7 +22,7 @@ before_script:
   # Uncomment next line if your Django app needs a JS runtime:
   # - apt-get update -q && apt-get install nodejs -yqq
   - pip install -r requirements/development.txt
-  - cd addressresolver
+  - cd ./addressresolver
 
 # To get Django tests to work you may need to create a settings file using
 # the following DATABASES:
@@ -42,6 +42,6 @@ before_script:
 
 test:
   variables:
-    DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
+    DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/postgres"
   script:
   - python manage.py test --config.settings.docker
