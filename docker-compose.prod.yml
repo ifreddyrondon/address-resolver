@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  db:
+    image: mdillon/postgis
+  web:
+    build: .
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.production
+      - DATABASE_URL=postgis://postgres:@db/postgres
+    command: bash -c "python manage.py collectstatic --noinput && ./start.sh"
+    volumes:
+      - ./addressresolver:/src
+    expose:
+      - "8000"
+    depends_on:
+      - db
+  nginx:
+    build: ./nginx/
+    ports:
+      - "80:8000"
+    volumes:
+      - ./addressresolver:/src
+    depends_on:
+      - web

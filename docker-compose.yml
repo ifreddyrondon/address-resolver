@@ -6,20 +6,13 @@ services:
   web:
     build: .
     environment:
-      - DJANGO_SETTINGS_MODULE=config.settings.production
+      - DJANGO_SETTINGS_MODULE=config.settings.dev
       - DATABASE_URL=postgis://postgres:@db/postgres
-    command: bash -c "python manage.py collectstatic --noinput && ./start.sh"
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+
     volumes:
       - ./addressresolver:/src
-    ports:
-      - "8000"
-    depends_on:
-      - db
-  nginx:
-    build: ./nginx/
     ports:
       - "8000:8000"
-    volumes:
-      - ./addressresolver:/src
     depends_on:
-      - web
+      - db
