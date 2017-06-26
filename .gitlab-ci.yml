@@ -44,4 +44,4 @@ test:
   variables:
     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/postgres"
   script:
-  - python manage.py test --config.settings.docker
+  - python manage.py test --settings=config.settings.docker
