@@ -1,5 +1,9 @@
 # Address resolver API
 
+## DEMO:
+[API](http://45.55.219.19/api/)
+[Docs](http://45.55.219.19/)
+
 ## Libraries used 
 * Django
 * django rest framework (API)
