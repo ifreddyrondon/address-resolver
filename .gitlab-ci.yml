@@ -44,6 +44,7 @@ before_script:
 test:
   variables:
     DATABASE_URL: "postgis://postgres:@mdillon__postgis/postgres"
+    SECRET_KEY: "testci"
   script:
   - python manage.py migrate --settings=config.settings.dev
   - python manage.py test --settings=config.settings.dev
