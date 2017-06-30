@@ -12,6 +12,7 @@ services:
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.dev
       - DATABASE_URL=postgis://postgres:@db/postgres
+      - SECRET_KEY=secret
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
 
     volumes:
