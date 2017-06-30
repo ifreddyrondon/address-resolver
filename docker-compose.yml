@@ -2,8 +2,12 @@ version: '3'
 
 services:
   db:
+    container_name: addressresolver-db
     image: mdillon/postgis
+    healthcheck:
+      test: exit 0
   web:
+    container_name: addressresolver-service
     build: .
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.dev

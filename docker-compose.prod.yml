@@ -2,8 +2,12 @@ version: '3'
 
 services:
   db:
+    container_name: addressresolver-db
     image: mdillon/postgis
+    healthcheck:
+      test: exit 0
   web:
+    container_name: addressresolver-service
     build:
       context: .
       dockerfile: Dockerfile.prod
@@ -21,8 +25,10 @@ services:
     build: ./nginx/
     volumes:
       - datavolume:/src/static
+    links:
+      - web
     ports:
-      - "80:8000"
+      - "8000:8000"
     depends_on:
       - web
 volumes:
