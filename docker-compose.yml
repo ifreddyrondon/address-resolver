@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  db:
+    container_name: addressresolver-db
+    image: mdillon/postgis
+    healthcheck:
+      test: exit 0
+  web:
+    container_name: addressresolver-service
+    build: .
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.dev
+      - DATABASE_URL=postgis://postgres:@db/postgres
+      - SECRET_KEY=secret
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+
+    volumes:
+      - ./addressresolver:/src
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
